@@ -172,8 +172,12 @@ class World:
 
         Return this list representation of the map.
         """
-
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
+        grid = []
+        for line in map_data:
+            temp = line.split()
+            temp = [int(item) for item in temp]
+            grid.append(temp)
+        return grid
 
     # TODO: Add methods for loading location data and item data (see note above).
 
