@@ -151,7 +151,7 @@ class World:
         - # TODO
     """
 
-    map: list[list]
+    map: list[list[int]]
     locations: list[Location]
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
@@ -173,6 +173,8 @@ class World:
 
         # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
+
+        self.locations = self.load_locations(location_data)
 
         # NOTE: You may choose how to store location and item data; create your own World methods to handle these
         # accordingly. The only requirements:
@@ -200,22 +202,29 @@ class World:
 
     # TODO: Add methods for loading location data and item data (see note above).
 
-    def load_location(self, location_data: TextIO) -> list[Location]:
+    def load_locations(self, location_data: TextIO) -> list[Location]:
         """
-        Initialize every location from open file location_data, store each location in a list and
+        Initialize every Location from open file location_data, store each Location in a list and
         return the list of Locations.
          """
 
-        position = int(location_data.readline())
-        brief = location_data.readline().strip()
-        line = location_data.readline().strip()
-        long = ''
-        while line != 'END':
-            long += line
+        locations = []
+        line = location_data.readline()
+        while line:
+            position = int(line)
+            brief = location_data.readline().strip()
+            line = location_data.readline().strip()
+            long = ''
+            while line != 'END':
+                long += line + '\n'
+                line = location_data.readline().strip()
+
+            location = Location(position, brief, long)
+            locations.append(location)
+            location_data.readline()  # skip the blank line
             line = location_data.readline()
 
-        location = Location(position, brief, long)
-        return [location]
+        return locations
 
     # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def get_location(self, x: int, y: int) -> Optional[Location]:

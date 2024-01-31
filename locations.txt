@@ -6,7 +6,7 @@ END
 0
 You are on the first floor of the Bahen Center. There are elevators to the West, and an exit from the building to St. George street to the East.
 You are on the first floor of the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet.
- Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down
- the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms. There are elevators to the West,
- and an exit from the building to St. George street to the East.
+Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down
+the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms. There are elevators to the West,
+and an exit from the building to St. George street to the East.
 END
