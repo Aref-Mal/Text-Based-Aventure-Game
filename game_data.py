@@ -232,5 +232,15 @@ class World:
          that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
          return None.)
         """
+        y_length = len(self.map)
+        x_length = len(self.map[0])
+        if not (0 <= y <= y_length) or not (0 <= x <= x_length):
+            return None
 
+        position = self.map[y][x]
+        if position == -1:
+            return None
+
+        else:
+            return self.locations[position + 1]
         # TODO: Complete this method as specified. Do not modify any of this function's specifications.
