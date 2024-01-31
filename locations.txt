@@ -4,9 +4,26 @@ That way is blocked.
 END
 
 0
-You are on the first floor of the Bahen Center. There are elevators to the West, and an exit from the building to St. George street to the East.
-You are on the first floor of the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet.
+You are in the Bahen Center. There is an exit from the building to St. George street to the East.
+You are in the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet.
 Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down
-the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms. There are elevators to the West,
-and an exit from the building to St. George street to the East.
+the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms.
+You remember studying for the CSC exam in one of the computer labs.
+There is an exit from the building to St. George street to the East.
 END
+
+3
+You are in the Galbraith building. You can either exit to St. George street to the West, or to College St. to the South.
+You find yourself in the Galbraith building, surrounded by students. A blended scent of coffee and paper fills the air.
+The sound of chatter and hurried footsteps reverbrate through the halls, as you navigate through the crowd.
+You can either exit to St. George street to the West, or to College St. to the South.
+END
+
+8
+You are now inside the Terrence Donnelly building. You can exit back to College St. by walking South.
+You are now inside the Terrence Donnelly building. As soon as you enter, an impressive bamboo garden beckons,
+offering a moment of escape from what has been a busy day. You remember taking a break there yesterday.
+You can exit back to College St. by walking South.
+END
+
+10
