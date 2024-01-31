@@ -232,5 +232,4 @@ class World:
          that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
          return None.)
         """
-
-        grid =
+        pass
