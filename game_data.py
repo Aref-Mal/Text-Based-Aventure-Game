@@ -171,10 +171,11 @@ class Player:
             actions.append('East')
 
         # Pick up / Drop
-        if location.location_items:  # location_items == []
+        if location.location_items:  # location_items != []
             actions.append("Pick up")
 
-        actions.append('menu')
+        if self.inventory:  # self.inventory != []
+            actions.append("Drop")
 
         return actions
 
@@ -311,3 +312,31 @@ class World:
 
         else:
             return self.locations[position]
+
+    def do_actions(self, p: Player, location: Location, choice: str) -> None:
+        """
+        this function does stuff
+        """
+        actions = p.available_actions(self.map, location)
+        actions = [action.lower() for action in actions]
+        menu = ["look", "inventory", "score", "quit"]
+
+        done = False
+        while not done:
+            if choice in actions or choice in menu:
+                done = True
+
+            else:
+                choice = input("Invalid Input. Try Again.")
+
+        if choice == 'north' or choice == 'east' or choice == 'south' or choice == 'west':
+            print("Moved")
+
+        elif choice == 'pick up':
+            print("Picked it up")
+
+        elif choice == 'drop':
+            print("Dropped the item")
+
+
+        return

@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     grid = w.map
 
-    menu = ["look", "inventory", "score", "quit", "back"]
+    menu = ["look", "inventory", "score", "quit"]
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
@@ -56,6 +56,8 @@ if __name__ == "__main__":
             for option in menu:
                 print(option)
             choice = input("\nChoose action: ")
+
+        w.do_actions(p, location, choice)
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
