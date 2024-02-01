@@ -4,19 +4,34 @@ That way is blocked.
 END
 
 0
-You are in the Bahen Center. There is an exit from the building to St. George street to the East.
+You are in the Bahen Center. There is an exit from the building to St. George Street. to the East.
 You are in the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet.
 Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down
 the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms.
 You remember studying for the CSC exam in one of the computer labs.
-There is an exit from the building to St. George street to the East.
+There is an exit from the building to St. George Street to the East.
+END
+
+1
+You are standing outside of the Bahen Center on St. George Street. You can go back into the building to the West or continue down the street to the South.
+You are standing outside of the Bahen Center on St. George Street. Bathed in the warm embrace of the sunlight, you want to head
+back to bed. However, you remember that you lost your items and reconcentrate on the task at hand.
+You can enter the building to the West or continue down the street to the South.
+END
+
+2
+You are standing in front of the Galbraith building. You can go inside the building by going East, or walk North / South on St. George Street.
+You stand in front of the Galbraith building, as students rush out past you. A fellow student nearby sits on the steps
+while casually eating their fries, seemingly unaffected by the chaos, making you question your own lunch plans.
+Let’s save that for after the exam, time to find your belongings for now.
+You can go inside the building by going East, or walk down St. George Street toward the North or South.
 END
 
 3
-You are in the Galbraith building. You can either exit to St. George street to the West, or to College St. to the South.
+You are in the Galbraith building. You can either exit to St. George Street to the West, or College St. to the South.
 You find yourself in the Galbraith building, surrounded by students. A blended scent of coffee and paper fills the air.
-The sound of chatter and hurried footsteps reverbrate through the halls, as you navigate through the crowd.
-You can either exit to St. George street to the West, or to College St. to the South.
+The sound of chatter and hurried footsteps reverberate through the halls, as you navigate through the crowd.
+You can either exit to St. George Street to the West, or College St. to the South.
 END
 
 4
@@ -24,4 +39,71 @@ You are now inside the Terrence Donnelly building. You can exit back to College 
 You are now inside the Terrence Donnelly building. As soon as you enter, an impressive bamboo garden beckons,
 offering a moment of escape from what has been a busy day. You remember taking a break there yesterday.
 You can exit back to College St. by walking South.
+END
+
+5
+You are standing at the corner of College and St. George Street Toward the North is the campus, East is down College St, and there is an alleyway to the South.
+You are standing at the corner of College and St. George St. The sidewalk is filled with students heading to class.
+As you stand at this intersection your eyes are still scanning through the street for your belongings, but to no avail.
+There are no items in sight so you decide to keep moving.
+Toward the North is the campus, the East is down College St, and there is an alleyway to the South.
+END
+
+6
+You are now on College St. to the South of Galbraith. Enter Galbraith to the North, or travel West / East down College St.
+You are now on College St. to the South of Galbraith. The street stretches ahead, lined with shops and cafes, the thought of
+taking a break is tempting but your exam is going to start soon. You start to get anxious. “Better find those items first”’
+Enter Galbraith to the North or travel West / East down College St
+END.
+
+7
+You are at the intersection of Mccaul and College St. Continue down College St. to the East, or go South to enter McCaul St.
+You are at the intersection of Mccaul and College St. The streets are busier than usual, and amidst the chaos, you must think of where to go next. Continue down College St. to the East, or go South to enter McCaul St.
+END
+
+8
+You have reached the end of College St. Go North to enter the Terrence Donnelly building, South to enter Health Sciences, or head back East.
+You have reached the end of College St. A cool breeze whispers through the air. You are faced with intriguing options.
+Go North to enter the Terrence Donnelly building and South to enter Health Sciences. If you are feeling indecisive,
+retrace your steps back East.
+END
+
+9
+You now stand in a suspicious alleyway. You can go further South into the alley or head back North if you are scared.
+You now stand in a suspicious alleyway. Something seems fishy; travelling any further might be risky. “I should head back.”
+You can go further South into the alley or head back North if you are scared.
+END
+
+10
+You are standing next to the Health Science building. You can enter it by going East, or down McCaul St. toward South. You can also go North to College St.
+You are standing next to the Health Science building. A group of students huddled together, sharing war stories about late-night study sessions and the trials of finding a reliable Wi-Fi connection on campus. The Health Sciences Building looms ahead, a beacon of knowledge, or a reminder that an apple a day won't keep the deadlines away.
+You can enter  by going East, or down McCaul St. toward South. You can also go North to College St.
+
+END
+
+11
+You are inside the Health Sciences building. You can exit to McCaul St to the West, College St. to the North, or go inside the Exam Centre to the South.
+You step inside the Health Sciences building. You encounter a student in a lab coat hastily moving through the halls,
+appearing to have made a groundbreaking discovery or, perhaps, just late to their class.
+You can exit to McCaul St to the West, College St. to the North, or go inside the Exam Centre to the South.
+END
+
+12
+Wow! It’s… a… DEAD END?!? Head back North and retrace your steps to find more items.
+Wow! It’s… a… DEAD END?!? “I can not believe I came all the way here for nothing.”
+Head back North and retrace your steps to find more items.
+END
+
+13
+You are standing in front of the Exam Centre at the end of the street. Proceed East to enter the Exam Centre or go back North to find more items.
+Now, as you stand before the Exam Centre, you can feel the nervous tension and quiet determination emanating through its doors.
+The soft murmurs of students engaged in last-minute revisions remind you of your own impending exam.
+Proceed East to enter the Exam Centre or go back North to find more items.
+END.
+
+14
+You are at the Exam Centre. To the North is the Health Science building, and to the East is an exit to McCaul St.
+You enter the Exam Centre, where students are huddled in groups, nervously reviewing for their exams.
+You should do the same, but not before you find all of your belongings first.
+To the North is the Health Science building, and to the East is an exit to McCaul St.
 END
