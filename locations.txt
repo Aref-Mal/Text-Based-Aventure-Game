@@ -78,7 +78,6 @@ END
 You are standing next to the Health Science building. You can enter it by going East, or down McCaul St. toward South. You can also go North to College St.
 You are standing next to the Health Science building. A group of students huddled together, sharing war stories about late-night study sessions and the trials of finding a reliable Wi-Fi connection on campus. The Health Sciences Building looms ahead, a beacon of knowledge, or a reminder that an apple a day won't keep the deadlines away.
 You can enter the building by going East, or down McCaul St. toward South. You can also go North to College St.
-
 END
 
 11
