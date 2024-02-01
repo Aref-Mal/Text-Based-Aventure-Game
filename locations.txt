@@ -54,7 +54,7 @@ You are now on College St. to the South of Galbraith. Enter Galbraith to the Nor
 You are now on College St. to the South of Galbraith. The street stretches ahead, lined with shops and cafes, the thought of
 taking a break is tempting but your exam is going to start soon. You start to get anxious. “Better find those items first."
 Enter Galbraith to the North or travel West / East down College St.
-END.
+END
 
 7
 You are at the intersection of Mccaul and College St. Continue down College St. to the East, or go South to enter McCaul St.
@@ -102,7 +102,7 @@ You are standing in front of the Exam Centre at the end of the street. Proceed E
 Now, as you stand before the Exam Centre, you can feel the nervous tension and quiet determination emanating through its doors.
 The soft murmurs of students engaged in last-minute revisions remind you of your own impending exam.
 Proceed East to enter the Exam Centre or go back North to find more items.
-END.
+END
 
 14
 You are at the Exam Centre. To the North is the Health Science building, and to the East is an exit to McCaul St.
