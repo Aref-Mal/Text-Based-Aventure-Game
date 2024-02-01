@@ -69,24 +69,10 @@ class Location:
         self.position = position
         self.brief_description = brief
         self.long_description = long
-        self.actions = ["look"]
         self.location_items = []
         self.visited = False
 
         # TODO: Complete this method
-
-    def available_actions(self):
-        """
-        Return the available actions in this location.
-        The actions should depend on the items available in the location
-        and the x,y position of this location on the world map.
-        """
-
-        # NOTE: This is just a suggested method
-        # i.e. You may remove/modify/rename this as you like, and complete the
-        # function header (e.g. add in parameters, complete the type contract) as needed
-
-        # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
 
 
 class Item:
@@ -155,6 +141,44 @@ class Player:
         self.y = y
         self.inventory = []
         self.victory = False
+
+    def available_actions(self, grid: list[list[int]], location: Location) -> list[str]:
+        """
+        Return the available actions in this location.
+        The actions should depend on the items available in the location
+        and the x,y position of this location on the world map.
+        """
+
+        # NOTE: This is just a suggested method
+        # i.e. You may remove/modify/rename this as you like, and complete the
+        # function header (e.g. add in parameters, complete the type contract) as needed
+
+        actions = []
+        x = self.x
+        y = self.y
+
+        # Directions
+        if (y - 1 >= 0) and (grid[y - 1][x] != -1):
+            actions.append('North')
+
+        if (y + 1 <= len(grid) - 1) and (grid[y + 1][x] != -1):
+            actions.append('South')
+
+        if (x - 1 >= 0) and (grid[y][x - 1] != -1):
+            actions.append('West')
+
+        if (x + 1 <= len(grid[y]) - 1) and (grid[y][x + 1] != -1):
+            actions.append('East')
+
+        # Pick up / Drop
+        if location.location_items:  # location_items == []
+            actions.append("Pick up")
+
+        actions.append('menu')
+
+        return actions
+
+        # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
 
 
 class World:

@@ -30,18 +30,24 @@ if __name__ == "__main__":
         w = World(map_file, locations_file, items_file)
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
 
+    grid = w.map
+
     menu = ["look", "inventory", "score", "quit", "back"]
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
+        if location.visited:
+            print(location.brief_description)
+        else:
+            print(location.long_description)
+            location.visited = True
 
-        # TODO: ENTER CODE HERE TO PRINT LOCATION DESCRIPTION
         # Depending on whether or not it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
 
         print("What to do? \n")
         print("[menu]")
-        for action in location.available_actions():
+        for action in p.available_actions(grid, location):
             print(action)
         choice = input("\nEnter action: ")
 
