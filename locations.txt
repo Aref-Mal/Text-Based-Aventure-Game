@@ -58,7 +58,9 @@ END.
 
 7
 You are at the intersection of Mccaul and College St. Continue down College St. to the East, or go South to enter McCaul St.
-You are at the intersection of Mccaul and College St. The streets are busier than usual, and amidst the chaos, you must think of where to go next. Continue down College St. to the East, or go South to enter McCaul St.
+You are at the intersection of Mccaul and College St. The streets are busier than usual, and amidst the chaos,
+you must think of where to go next.
+Continue down College St. to the East, or go South to enter McCaul St.
 END
 
 8
@@ -76,7 +78,9 @@ END
 
 10
 You are standing next to the Health Science building. You can enter it by going East, or down McCaul St. toward South. You can also go North to College St.
-You are standing next to the Health Science building. A group of students huddled together, sharing war stories about late-night study sessions and the trials of finding a reliable Wi-Fi connection on campus. The Health Sciences Building looms ahead, a beacon of knowledge, or a reminder that an apple a day won't keep the deadlines away.
+You are standing next to the Health Science building. A group of students huddled together, sharing war stories about
+late-night study sessions and the trials of finding a reliable Wi-Fi connection on campus.
+The Health Sciences Building looms ahead, a beacon of knowledge, or a reminder that an apple a day won't keep the deadlines away.
 You can enter the building by going East, or down McCaul St. toward South. You can also go North to College St.
 END
 
