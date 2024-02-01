@@ -1,8 +1,3 @@
--1
-That way is blocked.
-That way is blocked.
-END
-
 0
 You are in the Bahen Center. There is an exit from the building to St. George Street. to the East.
 You are in the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet.
@@ -109,4 +104,9 @@ You are at the Exam Centre. To the North is the Health Science building, and to 
 You enter the Exam Centre, where students are huddled in groups, nervously reviewing for their exams.
 You should do the same, but not before you find all of your belongings first.
 To the North is the Health Science building, and to the East is an exit to McCaul St.
+END
+
+-1
+That way is blocked.
+That way is blocked.
 END

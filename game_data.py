@@ -132,7 +132,11 @@ class Player:
     A Player in the text advanture game.
 
     Instance Attributes:
-        - # TODO
+        - x: the x coordinate of the player, represented as an integer
+        - y: the y coordinate of the player, represented as an integer
+        - inventory: the player's inventory of items, represented as a list
+        - victory: a variable that remains False until the player wins the game
+        # TODO
 
     Representation Invariants:
         - # TODO
@@ -194,9 +198,9 @@ class World:
 
         self.items = self.load_items(items_data)
 
-        # for item in self.items:
-        #     index = item.curr_position
-        #     self.locations[index].location_items += item
+        for item in self.items:
+            index = item.curr_position
+            self.locations[index].location_items.append(item)
 
         # NOTE: You may choose how to store location and item data; create your own World methods to handle these
         # accordingly. The only requirements:
@@ -282,5 +286,4 @@ class World:
             return None
 
         else:
-            return self.locations[position + 1]
-        # TODO: Complete this method as specified. Do not modify any of this function's specifications.
+            return self.locations[position]
