@@ -52,8 +52,8 @@ END
 6
 You are now on College St. to the South of Galbraith. Enter Galbraith to the North, or travel West / East down College St.
 You are now on College St. to the South of Galbraith. The street stretches ahead, lined with shops and cafes, the thought of
-taking a break is tempting but your exam is going to start soon. You start to get anxious. “Better find those items first”’
-Enter Galbraith to the North or travel West / East down College St
+taking a break is tempting but your exam is going to start soon. You start to get anxious. “Better find those items first."
+Enter Galbraith to the North or travel West / East down College St.
 END.
 
 7
