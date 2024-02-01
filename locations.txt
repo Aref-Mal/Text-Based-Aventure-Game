@@ -19,11 +19,9 @@ The sound of chatter and hurried footsteps reverbrate through the halls, as you 
 You can either exit to St. George street to the West, or to College St. to the South.
 END
 
-8
+4
 You are now inside the Terrence Donnelly building. You can exit back to College St. by walking South.
 You are now inside the Terrence Donnelly building. As soon as you enter, an impressive bamboo garden beckons,
 offering a moment of escape from what has been a busy day. You remember taking a break there yesterday.
 You can exit back to College St. by walking South.
 END
-
-10

@@ -29,17 +29,20 @@ class Location:
         - brief_description: a brief description of the location used after the first visit
         - long_description: a long description of the location use for a first time visit or when look is called
         - actions: a list of strings of available commands/directions to move at this location
-        - items: items that are available at this location or None if there are no items
+        - location_items: items that are available at this location or None if there are no items
         - visited: True if the location has been visited before, otherwise False
 
     Representation Invariants:
+        - self.position >= -1
+        - self.brief_description != '' and self.long_description != ''
+        - len(self.brief_description) <= len(self.long_description)
         - # TODO
     """
     position: int
     brief_description: str
     long_description: str
     actions: list[str]
-    items: Optional[list]
+    location_items: list
     visited: bool
 
     def __init__(self, position: int, brief: str, long: str) -> None:
@@ -67,6 +70,7 @@ class Location:
         self.brief_description = brief
         self.long_description = long
         self.actions = ["look"]
+        self.location_items = []
         self.visited = False
 
         # TODO: Complete this method
@@ -89,11 +93,20 @@ class Item:
     """An item in our text adventure game world.
 
     Instance Attributes:
-        - # TODO
+        - name: the name of the item
+        - curr_position: the current position of the item on the map, represented as an integer
+        - target_position: the position where the item must be deposited for points, represented as an integer
+        - target_points: the amount of points the item will give for being deposited at target_position.
 
     Representation Invariants:
+        - self.name != ''
+        - self.curr_position >= 0 and self.target_position >= 0
         - # TODO
     """
+    name: str
+    curr_position: int
+    target_position: int
+    target_points: int
 
     def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
@@ -109,7 +122,7 @@ class Item:
         # All item objects in your game MUST be represented as an instance of this class.
 
         self.name = name
-        self.start_position = start
+        self.curr_position = start
         self.target_position = target
         self.target_points = target_points
 
@@ -145,6 +158,8 @@ class World:
 
     Instance Attributes:
         - map: a nested list representation of this world's map
+        - locations: a list representation of the locations in this world
+        - items: a list representation of the items in this world
         - # TODO add more instance attributes as needed; do NOT remove the map attribute
 
     Representation Invariants:
@@ -153,6 +168,7 @@ class World:
 
     map: list[list[int]]
     locations: list[Location]
+    items: list[Item]
 
     def __init__(self, map_data: TextIO, location_data: TextIO, items_data: TextIO) -> None:
         """
@@ -175,6 +191,12 @@ class World:
         self.map = self.load_map(map_data)
 
         self.locations = self.load_locations(location_data)
+
+        self.items = self.load_items(items_data)
+
+        # for item in self.items:
+        #     index = item.curr_position
+        #     self.locations[index].location_items += item
 
         # NOTE: You may choose how to store location and item data; create your own World methods to handle these
         # accordingly. The only requirements:
@@ -204,7 +226,7 @@ class World:
 
     def load_locations(self, location_data: TextIO) -> list[Location]:
         """
-        Initialize every Location from open file location_data, store each Location in a list and
+        Initialize every Location from open file location_data and store each Location in a list and
         return the list of Locations.
          """
 
@@ -226,12 +248,30 @@ class World:
 
         return locations
 
+    def load_items(self, items_data: TextIO) -> list[Item]:
+        """
+        Initialize every Item from open file item_data and store each Item in a list and
+        return the list of Items.
+        """
+
+        items = []
+        for line in items_data:
+            parts = line.split()
+            curr_position, target_position, target_points = int(parts.pop(0)), int(parts.pop(0)), int(parts.pop(0))
+            name = ' '.join(parts)
+
+            item = Item(name, curr_position, target_position, target_points)
+            items.append(item)
+
+        return items
+
     # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def get_location(self, x: int, y: int) -> Optional[Location]:
         """Return Location object associated with the coordinates (x, y) in the world map, if a valid location exists at
          that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
          return None.)
         """
+
         y_length = len(self.map)
         x_length = len(self.map[0])
         if not (0 <= y <= y_length) or not (0 <= x <= x_length):
