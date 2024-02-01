@@ -25,7 +25,8 @@ from game_data import World, Item, Location, Player
 
 # Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
-    with open("map.txt") as map_file, open("locations.txt") as locations_file, open("items.txt") as items_file:
+    with (open("map.txt") as map_file, open("locations.txt", encoding='utf-8') as locations_file,
+          open("items.txt") as items_file):
         w = World(map_file, locations_file, items_file)
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
 
