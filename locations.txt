@@ -52,7 +52,7 @@ END
 6
 You are now on College St. to the South of Galbraith. Enter Galbraith to the North, or travel West / East down College St.
 You are now on College St. to the South of Galbraith. The street stretches ahead, lined with shops and cafes, the thought of
-taking a break is tempting but your exam is going to start soon. You start to get anxious. “Better find those items first."
+taking a break is tempting but your exam is going to start soon. You start to get anxious. Better find those items first.
 Enter Galbraith to the North or travel West / East down College St.
 END
 
@@ -72,7 +72,7 @@ END
 
 9
 You now stand in a suspicious alleyway. You can go further South into the alley or head back North if you are scared.
-You now stand in a suspicious alleyway. Something seems fishy; travelling any further might be risky. “I should head back.”
+You now stand in a suspicious alleyway. Something seems fishy; travelling any further might be risky. You should head back.
 You can go further South into the alley or head back North if you are scared.
 END
 
@@ -93,7 +93,7 @@ END
 
 12
 Wow! It’s… a… DEAD END?!? Head back North and retrace your steps to find more items.
-Wow! It’s… a… DEAD END?!? “I can not believe I came all the way here for nothing.”
+Wow! It’s… a… DEAD END?!? You cannot believe you came all the way here for nothing.
 Head back North and retrace your steps to find more items.
 END
 
