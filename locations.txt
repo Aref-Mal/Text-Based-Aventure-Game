@@ -1,16 +1,16 @@
 0
 You are in the Bahen Center. There is an exit from the building to St. George Street. to the East.
 You are in the Bahen Center. It's usually crowded at this time of the day, but today it's eerily quiet.
-Only a few students are studying at the table near the doors. You better not disturb them. One student is rushing down
-the corridor, wearing a heavy-looking backpack and carrying a textbook in their arms.
-You remember studying for the CSC exam in one of the computer labs.
+Only a few students are studying at the table near the doors. You better not disturb them.
+One student is rushing down the corridor, wearing a heavy-looking backpack and carrying a textbook
+in their arms. You remember studying for the CSC exam in one of the computer labs.
 There is an exit from the building to St. George Street to the East.
 END
 
 1
 You are standing outside of the Bahen Center on St. George Street. You can go back into the building to the West or continue down the street to the South.
-You are standing outside of the Bahen Center on St. George Street. Bathed in the warm embrace of the sunlight, you want to head
-back to bed. However, you remember that you lost your items and reconcentrate on the task at hand.
+You are standing outside of the Bahen Center on St. George Street. Bathed in the warm embrace of the sunlight,
+you want to head back to bed. However, you remember that you lost your items and reconcentrate on the task at hand.
 You can enter the building to the West or continue down the street to the South.
 END
 
@@ -104,9 +104,4 @@ You are at the Exam Centre. To the North is the Health Science building, and to 
 You enter the Exam Centre, where students are huddled in groups, nervously reviewing for their exams.
 You should do the same, but not before you find all of your belongings first.
 To the North is the Health Science building, and to the East is an exit to McCaul St.
-END
-
--1
-That way is blocked.
-That way is blocked.
 END

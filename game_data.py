@@ -122,36 +122,32 @@ class Player:
         - y: the y coordinate of the player, represented as an integer
         - inventory: the player's inventory of items, represented as a list
         - victory: a variable that remains False until the player wins the game
-        # TODO
+        - score: the total score of the player in the game
+        - moves: the total number of "moves" the player has made so far
 
     Representation Invariants:
-        - # TODO
+        - self.x >= 0 and self.y >= 0
+        - all([isinstance(item, Item) for item in self.inventory])
+        - self.score >= 0 and self.moves >= 0
     """
 
     def __init__(self, x: int, y: int) -> None:
         """
         Initializes a new Player at position (x, y).
         """
-
-        # NOTES:
-        # This is a suggested starter class for Player.
-        # You may change these parameters and the data available for the Player object as you see fit.
-
         self.x = x
         self.y = y
         self.inventory = []
         self.victory = False
+        self.score = 0
+        self.moves = 0
 
     def available_actions(self, grid: list[list[int]], location: Location) -> list[str]:
         """
-        Return the available actions in this location.
+        Return the available actions of this player at in this location.
         The actions should depend on the items available in the location
-        and the x,y position of this location on the world map.
+        and the x,y position of the player on the world map.
         """
-
-        # NOTE: This is just a suggested method
-        # i.e. You may remove/modify/rename this as you like, and complete the
-        # function header (e.g. add in parameters, complete the type contract) as needed
 
         actions = []
         x = self.x
@@ -164,11 +160,11 @@ class Player:
         if (y + 1 <= len(grid) - 1) and (grid[y + 1][x] != -1):
             actions.append('South')
 
-        if (x - 1 >= 0) and (grid[y][x - 1] != -1):
-            actions.append('West')
-
         if (x + 1 <= len(grid[y]) - 1) and (grid[y][x + 1] != -1):
             actions.append('East')
+
+        if (x - 1 >= 0) and (grid[y][x - 1] != -1):
+            actions.append('West')
 
         # Pick up / Drop
         if location.location_items:  # location_items != []
@@ -179,7 +175,103 @@ class Player:
 
         return actions
 
-        # TODO: Complete this method, if you'd like or remove/replace it if you're not using it
+    def go(self, direction: str) -> None:
+        """Change the player's x and y coordinate to reflect the direction they are travelling in.
+        This function is only called when the move is valid (in the do_actions function) therefore, no need
+        to check again in this method.
+        """
+        if direction == 'north':
+            self.y -= 1
+
+        elif direction == 'south':
+            self.y += 1
+
+        elif direction == 'east':
+            self.x += 1
+
+        else:
+            self.x -= 1
+
+        self.moves += 1
+        return
+
+    def open_inventory(self) -> None:
+        """Displays the names of the items in the player's inventory
+        """
+        item_names = [item.name for item in self.inventory]
+
+        if item_names:
+            print(f"This is what is in your bag: {item_names}")
+
+        else:
+            print("Your bag is empty. *crickets*")
+        print()
+
+        return
+
+    def pick_up(self, location: Location) -> None:
+        """Add an item to the items of the location the player is currently at and remove the item
+        from the player's inventory. Update the player's score if the picked up the item from its
+        target location. This is a mutating method and returns None.
+        """
+        item_names = [item.name.lower() for item in location.location_items]
+
+        print(f"You found: {item_names}")
+
+        done = False
+        pick_choice = ''
+        while not done:
+            pick_choice = input("Which item would you like to pick up?").lower()
+            if pick_choice in item_names:
+                done = True
+            else:
+                print("That item is not here.\n")
+
+        # find the index of the item
+        pick_index = 0
+        for i in range(len(item_names)):
+            if pick_choice == item_names[i]:
+                pick_index = i
+
+        # drop pick up item from location and adjust points if needed
+        item = location.location_items.pop(pick_index)
+        self.inventory.append(item)
+        print(f"You picked up the {item.name}.\n")
+
+        if item.target_position == location.position:
+            self.score -= item.target_points
+
+    def drop(self, location: Location) -> None:
+        """Remove an item from the player's intventory and add it to the items of the location
+        in which the player is currently at. Update the player's score if they dropped the item into its
+        target location. This is a mutating method and returns None.
+        """
+        item_names = [item.name.lower() for item in self.inventory]
+
+        print(f"You have: {item_names}")
+
+        done = False
+        drop_choice = ''
+        while not done:
+            drop_choice = input("Which item would you like to drop?").lower()
+            if drop_choice in item_names:
+                done = True
+            else:
+                print("You don't have that item.\n")
+
+        # find the index of the item
+        drop_index = 0
+        for i in range(len(item_names)):
+            if drop_choice == item_names[i]:
+                drop_index = i
+
+        # drop item into location and adjust points if needed
+        item = self.inventory.pop(drop_index)
+        location.location_items.append(item)
+        print(f"You dropped the {item.name}.\n")
+
+        if item.target_position == location.position:
+            self.score += item.target_points
 
 
 class World:
@@ -189,10 +281,9 @@ class World:
         - map: a nested list representation of this world's map
         - locations: a list representation of the locations in this world
         - items: a list representation of the items in this world
-        - # TODO add more instance attributes as needed; do NOT remove the map attribute
 
     Representation Invariants:
-        - # TODO
+        - len(self.map) > 0 and all([len(row) > 0 for row in self.map])
     """
 
     map: list[list[int]]
@@ -250,8 +341,6 @@ class World:
             temp = [int(item) for item in temp]
             grid.append(temp)
         return grid
-
-    # TODO: Add methods for loading location data and item data (see note above).
 
     def load_locations(self, location_data: TextIO) -> list[Location]:
         """
@@ -317,26 +406,25 @@ class World:
         """
         this function does stuff
         """
-        actions = p.available_actions(self.map, location)
-        actions = [action.lower() for action in actions]
-        menu = ["look", "inventory", "score", "quit"]
+        valid_choices = p.available_actions(self.map, location)
+        valid_choices = [action.lower() for action in valid_choices]
+        valid_choices.extend(["look", "inventory", "score", "quit"])
 
-        done = False
-        while not done:
-            if choice in actions or choice in menu:
-                done = True
+        if choice not in valid_choices:
+            print("Invalid option. Please try again.\n")
+            return
 
-            else:
-                choice = input("Invalid Input. Try Again.")
-
-        if choice == 'north' or choice == 'east' or choice == 'south' or choice == 'west':
-            print("Moved")
+        elif choice == 'north' or choice == 'east' or choice == 'south' or choice == 'west':
+            p.go(choice)
 
         elif choice == 'pick up':
-            print("Picked it up")
+            p.pick_up(location)
 
         elif choice == 'drop':
-            print("Dropped the item")
+            p.drop(location)
 
+        # [menu] options
+        elif choice == 'inventory':
+            p.open_inventory()
 
         return

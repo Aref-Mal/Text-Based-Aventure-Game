@@ -36,27 +36,29 @@ if __name__ == "__main__":
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
+
+        # Depending on whether it's been visited before,
+        # print either full description (first time visit) or brief description (every subsequent visit)
         if location.visited:
             print(location.brief_description)
         else:
             print(location.long_description)
             location.visited = True
 
-        # Depending on whether or not it's been visited before,
-        # print either full description (first time visit) or brief description (every subsequent visit)
-
         print("What to do? \n")
         print("[menu]")
         for action in p.available_actions(grid, location):
             print(action)
-        choice = input("\nEnter action: ")
+        choice = input("\nEnter action: ").lower()
 
         if choice == "[menu]":
             print("Menu Options: \n")
             for option in menu:
                 print(option)
-            choice = input("\nChoose action: ")
+            choice = input("\nChoose action: ").lower()
 
+        if choice == "quit":
+            quit_game = True
         w.do_actions(p, location, choice)
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
