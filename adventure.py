@@ -58,8 +58,14 @@ if __name__ == "__main__":
             choice = input("\nChoose action: ").lower()
 
         if choice == "quit":
-            quit_game = True
+            break
         w.do_actions(p, location, choice)
+
+    if p.victory:
+        print('''WIN COMMENT''')
+
+    else:
+        print('''QUIT COMMENT''')
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
