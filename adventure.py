@@ -30,11 +30,12 @@ if __name__ == "__main__":
         w = World(map_file, locations_file, items_file)
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
 
+    allowed_moves = 20
     grid = w.map
     menu = ["look", "inventory", "score", "quit"]
     choice = ''
 
-    while not p.victory:
+    while not p.victory and p.moves <= allowed_moves:
         location = w.get_location(p.x, p.y)
 
         # Depending on whether it's been visited before,
@@ -64,7 +65,29 @@ if __name__ == "__main__":
                 print(option)
             choice = input("\nChoose action: ").lower()
 
+        if choice == "quit":
+            break
         w.do_actions(p, location, choice)
+
+    if p.victory:
+        print("Congratulations! You have successfully retrieved all of your crucial belongings! \n"
+              "With all of them in hand, you stride confindently into the Exam Centre,\n"
+              "ready to complete your final quest - the computer science exam.\n"
+              "After a long journey, it is time to focus and apply your knowledge to the true test.\n"
+              "Best of luck to you, and may your code be bug-free.")
+        print(f'You had {allowed_moves - p.moves} remaining. You completed the game with {p.score} points.')
+
+    else:
+        if p.moves > allowed_moves:
+            print("As you rush toward your next destination and check your watch, you realize with a sinking feeling \n"
+                  "that the exam has already begun. Despite your utmost efforts, the race against the clock comes to \n"
+                  "a melancholic end. It appears the journey until now has all been for naught. However, in every \n"
+                  "defeat lies a lesson. Keep your head high, and you will be better equipped for success!")
+        else:
+            print("Regrettably, the quest to find all of your items scattered across the campus \n"
+                  "proved to be a challenge too arduous to complete. You have made the difficult decision to quit, \n"
+                  "leaving your items unclaimed. The path to success is filled with failures, and it seems as though\n"
+                  "this is one of those moments. Stay resilient, and may fortune favour you in the future.")
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
         #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
