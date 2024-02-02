@@ -30,49 +30,38 @@ class Location:
         - long_description: a long description of the location use for a first time visit or when look is called
         - actions: a list of strings of available commands/directions to move at this location
         - location_items: items that are available at this location or None if there are no items
+        - visit_points: the number of points the player gets for visting this location for the first time
         - visited: True if the location has been visited before, otherwise False
 
     Representation Invariants:
         - self.position >= -1
         - self.brief_description != '' and self.long_description != ''
         - len(self.brief_description) <= len(self.long_description)
-        - # TODO
     """
     position: int
     brief_description: str
     long_description: str
     actions: list[str]
     location_items: list
+    visit_points: int
     visited: bool
 
-    def __init__(self, position: int, brief: str, long: str) -> None:
+    def __init__(self, position: int, brief: str, long: str, visit_points: int) -> None:
         """Initialize a new location.
-
-        # TODO Add more details here about the initialization if needed
         """
 
-        # NOTES:
-        # Data that could be associated with each Location object:
-        # a position in the world map,
-        # a brief description,
-        # a long description,
-        # a list of available commands/directions to move,
-        # items that are available in the location,
-        # and whether the location has been visited before.
-        # Store these as you see fit, using appropriate data types.
-        #
-        # This is just a suggested starter class for Location.
-        # You may change/add parameters and the data available for each Location object as you see fit.
-        #
-        # The only thing you must NOT change is the name of this class: Location.
-        # All locations in your game MUST be represented as an instance of this class.
         self.position = position
         self.brief_description = brief
         self.long_description = long
         self.location_items = []
+        self.visit_points = visit_points
         self.visited = False
 
-        # TODO: Complete this method
+    def look(self) -> None:
+        """Display this locations full / long description.
+        """
+        print(self.long_description)
+        return
 
 
 class Item:
@@ -87,7 +76,6 @@ class Item:
     Representation Invariants:
         - self.name != ''
         - self.curr_position >= 0 and self.target_position >= 0
-        - # TODO
     """
     name: str
     curr_position: int
@@ -240,6 +228,7 @@ class Player:
 
         if item.target_position == location.position:
             self.score -= item.target_points
+            print(f"You lost {item.target_points} points for removing this item from this location. :(")
 
     def drop(self, location: Location) -> None:
         """Remove an item from the player's intventory and add it to the items of the location
@@ -272,6 +261,7 @@ class Player:
 
         if item.target_position == location.position:
             self.score += item.target_points
+            print(f"You got {item.target_points} points for depositing this item into this location! :)")
 
 
 class World:
@@ -352,14 +342,15 @@ class World:
         line = location_data.readline()
         while line:
             position = int(line)
-            brief = location_data.readline().strip()
+            points = int(location_data.readline())
+            brief = location_data.readline()
             line = location_data.readline().strip()
             long = ''
             while line != 'END':
                 long += line + '\n'
                 line = location_data.readline().strip()
 
-            location = Location(position, brief, long)
+            location = Location(position, brief, long, points)
             locations.append(location)
             location_data.readline()  # skip the blank line
             line = location_data.readline()
@@ -404,7 +395,8 @@ class World:
 
     def do_actions(self, p: Player, location: Location, choice: str) -> None:
         """
-        this function does stuff
+        This function performs an action based on the player's choice. If the choice
+        entered is invalid it asks them to renter their choice until a valid one is given by the player.
         """
         valid_choices = p.available_actions(self.map, location)
         valid_choices = [action.lower() for action in valid_choices]
@@ -424,7 +416,13 @@ class World:
             p.drop(location)
 
         # [menu] options
+        elif choice == 'look':
+            location.look()
+
         elif choice == 'inventory':
             p.open_inventory()
+
+        elif choice == 'score':
+            print(f"Your score is: {p.score}")
 
         return

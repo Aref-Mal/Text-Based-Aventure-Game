@@ -31,19 +31,26 @@ if __name__ == "__main__":
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
 
     grid = w.map
-
     menu = ["look", "inventory", "score", "quit"]
+    choice = ''
 
     while not p.victory:
         location = w.get_location(p.x, p.y)
 
         # Depending on whether it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
-        if location.visited:
+        if choice == 'look':
+            pass
+
+        elif location.visited:
             print(location.brief_description)
+
         else:
             print(location.long_description)
             location.visited = True
+            if location.visit_points != 0:
+                p.score += location.visit_points
+                print(f"You got {location.visit_points} points for visiting this location!")
 
         print("What to do? \n")
         print("[menu]")
@@ -57,8 +64,6 @@ if __name__ == "__main__":
                 print(option)
             choice = input("\nChoose action: ").lower()
 
-        if choice == "quit":
-            quit_game = True
         w.do_actions(p, location, choice)
 
         # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
