@@ -1,3 +1,7 @@
+pick up
+cheat sheet
+[menu]
+inventory
 east
 south
 south
