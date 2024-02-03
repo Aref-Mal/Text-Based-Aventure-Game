@@ -1,3 +1,6 @@
-0 14 25 Cheat Sheet
 4 14 25 T-Card
 11 14 25 Lucky Pen
+
+0 14 25 Cheat Sheet
+T-Card
+It seems the Cheat Sheet is locked inside one of the study rooms. You should find something to unlock the door.

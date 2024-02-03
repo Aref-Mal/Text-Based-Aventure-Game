@@ -61,7 +61,7 @@ class Location:
         """Display this locations full / long description.
         """
         print(self.long_description)
-        return
+
 
 
 class Item:
@@ -85,20 +85,37 @@ class Item:
     def __init__(self, name: str, start: int, target: int, target_points: int) -> None:
         """Initialize a new item.
         """
-
-        # NOTES:
-        # This is just a suggested starter class for Item.
-        # You may change these parameters and the data available for each Item object as you see fit.
-        # (The current parameters correspond to the example in the handout).
-        # Consider every method in this Item class as a "suggested method".
-        #
-        # The only thing you must NOT change is the name of this class: Item.
-        # All item objects in your game MUST be represented as an instance of this class.
-
         self.name = name
         self.curr_position = start
         self.target_position = target
         self.target_points = target_points
+
+
+class SpecialItem(Item):
+    """A 'special item' that is a subclass of the Item class
+    Instance Attributes:
+        - status: attribute that determines whether the item is locked (cant be picked up) or
+        unlocked (can be picked up). Status should remain False until the player has the key
+        - key: the Item needed by the player to unlock this SpecialItem
+        - hint: a message given to the player to help them find the key
+    """
+    unlocked: bool
+    key: Item
+    hint: str
+
+    def __init__(self, name: str, start: int, target: int, target_points: int, key: Item, hint: str) -> None:
+        # using the Item class initializer
+        super().__init__(name, start, target, target_points)
+        self.status = False
+        self.key = key
+        self.hint = hint
+
+    def unlock(self, inventory: list[Item]) -> None:
+        """Unlock the special item (make status True) if the key is present in the player's inventory
+        """
+        if self.key in inventory:
+            self.status = True
+
 
 
 class Player:
@@ -118,6 +135,12 @@ class Player:
         - all([isinstance(item, Item) for item in self.inventory])
         - self.score >= 0 and self.moves >= 0
     """
+    x: int
+    y: int
+    inventory: list[Item]
+    victory: bool
+    score: int
+    moves: int
 
     def __init__(self, x: int, y: int) -> None:
         """
@@ -164,9 +187,9 @@ class Player:
         return actions
 
     def go(self, direction: str) -> None:
-        """Change the player's x and y coordinate to reflect the direction they are travelling in.
+        """Change the player's x and y coordinate to reflect the direction they travelled towards.
         This function is only called when the move is valid (in the do_actions function) therefore, no need
-        to check again in this method.
+        to check the validity of a move again in this method.
         """
         if direction == 'north':
             self.y -= 1
@@ -181,7 +204,6 @@ class Player:
             self.x -= 1
 
         self.moves += 1
-        return
 
     def open_inventory(self) -> None:
         """Displays the names of the items in the player's inventory
@@ -195,7 +217,6 @@ class Player:
             print("Your bag is empty. *crickets*")
         print()
 
-        return
 
     def pick_up(self, location: Location) -> None:
         """Add an item to the items of the location the player is currently at and remove the item
@@ -213,7 +234,7 @@ class Player:
             if pick_choice in item_names:
                 done = True
             else:
-                print("That item is not here.\n")
+                print("That item is not here.")
 
         # find the index of the item
         pick_index = 0
@@ -221,14 +242,30 @@ class Player:
             if pick_choice == item_names[i]:
                 pick_index = i
 
-        # drop pick up item from location and adjust points if needed
+        # pick up item from location and adjust points if needed
         item = location.location_items.pop(pick_index)
-        self.inventory.append(item)
-        print(f"You picked up the {item.name}.\n")
+
+        # check for key if SpecialItem
+        if isinstance(item, SpecialItem):
+            item.unlock(self.inventory)
+
+            if item.status:
+                self.inventory.append(item)
+                print(f"You picked up the {item.name}.")
+
+            else:
+                print(item.hint)
+                location.location_items.insert(pick_index, item)
+
+        else:
+            self.inventory.append(item)
+            print(f"You picked up the {item.name}.")
 
         if item.target_position == location.position:
             self.score -= item.target_points
-            print(f"You lost {item.target_points} points for removing this item from this location. :(")
+            print(f"You lost {item.target_points} points for removing the {item.name} from this location. :(")
+
+        print()
 
     def drop(self, location: Location) -> None:
         """Remove an item from the player's intventory and add it to the items of the location
@@ -246,7 +283,7 @@ class Player:
             if drop_choice in item_names:
                 done = True
             else:
-                print("You don't have that item.\n")
+                print("You don't have that item.")
 
         # find the index of the item
         drop_index = 0
@@ -257,11 +294,13 @@ class Player:
         # drop item into location and adjust points if needed
         item = self.inventory.pop(drop_index)
         location.location_items.append(item)
-        print(f"You dropped the {item.name}.\n")
+        print(f"You dropped the {item.name}.")
 
         if item.target_position == location.position:
             self.score += item.target_points
-            print(f"You got {item.target_points} points for depositing this item into this location! :)")
+            print(f"You got {item.target_points} points for depositing the {item.name} into this location! :)")
+
+        print()
 
 
 class World:
@@ -359,18 +398,37 @@ class World:
 
     def load_items(self, items_data: TextIO) -> list[Item]:
         """
-        Initialize every Item from open file item_data and store each Item in a list and
+        Initialize every Item (or SpecialItem) from open file item_data and store each Item in a list and
         return the list of Items.
         """
 
         items = []
-        for line in items_data:
+        line = items_data.readline().strip()
+
+        # load normal items
+        while line != '':
             parts = line.split()
             curr_position, target_position, target_points = int(parts.pop(0)), int(parts.pop(0)), int(parts.pop(0))
             name = ' '.join(parts)
 
             item = Item(name, curr_position, target_position, target_points)
             items.append(item)
+            line = items_data.readline().strip()
+
+        # load special items
+        for line in items_data:
+            parts = line.split()
+            curr_position, target_position, target_points = int(parts.pop(0)), int(parts.pop(0)), int(parts.pop(0))
+            name = ' '.join(parts)
+
+            # find key
+            key = items[0]
+            for item in items:
+                if item.name == items_data.readline().strip():
+                    key = item
+            hint = items_data.readline()
+            special_item = SpecialItem(name, curr_position, target_position, target_points, key, hint)
+            items.append(special_item)
 
         return items
 
@@ -395,7 +453,7 @@ class World:
 
     def do_actions(self, p: Player, location: Location, choice: str) -> None:
         """
-        This function performs an action based on the player's choice. If the choice
+        This function performs an action based on the player's choice (it calls a method to do so). If the choice
         entered is invalid it asks them to renter their choice until a valid one is given by the player.
         """
         valid_choices = p.available_actions(self.map, location)
@@ -423,6 +481,6 @@ class World:
             p.open_inventory()
 
         elif choice == 'score':
-            print(f"Your score is: {p.score}")
+            print(f"Your score so far is: {p.score}")
 
         return

@@ -32,11 +32,18 @@ if __name__ == "__main__":
 
     allowed_moves = 20
     grid = w.map
+    winning_items = [item for item in w.items if item.target_position == 14]
+    exam_room = w.get_location(4, 4)
     menu = ["look", "inventory", "score", "quit"]
     choice = ''
 
     while not p.victory and p.moves <= allowed_moves:
         location = w.get_location(p.x, p.y)
+
+        # Check if the player has won
+        if all(item in exam_room.location_items for item in winning_items):
+            p.victory = True
+            break
 
         # Depending on whether it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -67,8 +74,10 @@ if __name__ == "__main__":
 
         if choice == "quit":
             break
+
         w.do_actions(p, location, choice)
 
+    # Player wins the game
     if p.victory:
         print("Congratulations! You have successfully retrieved all of your crucial belongings! \n"
               "With all of them in hand, you stride confindently into the Exam Centre,\n"
@@ -78,11 +87,13 @@ if __name__ == "__main__":
         print(f'You had {allowed_moves - p.moves} remaining. You completed the game with {p.score} points.')
 
     else:
+        # Player loses the game
         if p.moves > allowed_moves:
             print("As you rush toward your next destination and check your watch, you realize with a sinking feeling \n"
                   "that the exam has already begun. Despite your utmost efforts, the race against the clock comes to \n"
                   "a melancholic end. It appears the journey until now has all been for naught. However, in every \n"
                   "defeat lies a lesson. Keep your head high, and you will be better equipped for success!")
+        # Player quits
         else:
             print("Regrettably, the quest to find all of your items scattered across the campus \n"
                   "proved to be a challenge too arduous to complete. You have made the difficult decision to quit, \n"
