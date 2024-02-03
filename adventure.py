@@ -21,15 +21,12 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 # Note: You may add in other import statements here as needed
 from game_data import World, Item, Location, Player
 
-# Note: You may add helper functions, classes, etc. here as needed
-
-# Note: You may modify the code below as needed; the following starter template are just suggestions
 if __name__ == "__main__":
     with (open("map.txt") as map_file, open("locations.txt", encoding='utf-8') as locations_file,
           open("items.txt") as items_file):
         w = World(map_file, locations_file, items_file)
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
-    allowed_moves = 25
+    allowed_moves = 30
     grid = w.map
     winning_items = [item for item in w.items if item.target_position == 14]
     exam_room = w.get_location(4, 4)
@@ -117,14 +114,3 @@ if __name__ == "__main__":
                   "proved to be a challenge too arduous to complete. You have made the difficult decision to quit, \n"
                   "leaving your items unclaimed. The path to success is filled with failures, and it seems as though\n"
                   "this is one of those moments. Stay resilient, and may fortune favour you in the future.")
-
-        # TODO: CALL A FUNCTION HERE TO HANDLE WHAT HAPPENS UPON THE PLAYER'S CHOICE
-        #  REMEMBER: the location = w.get_location(p.x, p.y) at the top of this loop will update the location if
-        #  the choice the player made was just a movement, so only updating player's position is enough to change the
-        #  location to the next appropriate location
-        #  Possibilities:
-        #  A helper function such as do_action(w, p, location, choice)
-        #  OR A method in World class w.do_action(p, location, choice)
-        #  OR Check what type of action it is, then modify only player or location accordingly
-        #  OR Method in Player class for move or updating inventory
-        #  OR Method in Location class for updating location item info, or other location data etc....

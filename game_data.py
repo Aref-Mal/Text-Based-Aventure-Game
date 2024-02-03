@@ -97,6 +97,9 @@ class SpecialItem(Item):
         unlocked (can be picked up). Status should remain False until the player has the key
         - key: the Item needed by the player to unlock this SpecialItem
         - hint: a message given to the player to help them find the key
+
+    Representation Invariants:
+        - self.hint != ''
     """
     status: bool
     key: Item
@@ -127,7 +130,7 @@ class Player:
         - victory: a variable that remains False until the player wins the game
         - score: the total score of the player in the game
         - moves: the total number of "moves" the player has made so far
-        - movement_mod: movement modifier represents the number of moves the player takes for each
+        - movement_mod: movement modifier which modifies the number of moves the player takes for each
         movement based action (go North / South / East / West)
 
     Representation Invariants:
@@ -220,9 +223,9 @@ class Player:
         print()
 
     def pick_up(self, location: Location) -> None:
-        """Add an item to the items of the location the player is currently at and remove the item
-        from the player's inventory. Update the player's score if the picked up the item from its
-        target location. This is a mutating method and returns None.
+        """Add an item to the player's inventory and remove it from the items of the location the player is currently
+        at. Update the player's score if they picked up the item from its target location.
+        This is a mutating method and returns None.
         """
         item_names = [item.name.lower() for item in location.location_items]
 
@@ -327,16 +330,6 @@ class World:
         - location_data: name of text file containing location data (format left up to you)
         - items_data: name of text file containing item data (format left up to you)
         """
-
-        # NOTES:
-
-        # map_data should refer to an open text file containing map data in a grid format, with integers separated by a
-        # space, representing each location, as described in the project handout. Each integer represents a different
-        # location, and -1 represents an invalid, inaccessible space.
-
-        # You may ADD parameters/attributes/methods to this class as you see fit.
-        # BUT DO NOT RENAME OR REMOVE ANY EXISTING METHODS/ATTRIBUTES IN THIS CLASS
-
         # The map MUST be stored in a nested list as described in the load_map() function's docstring below
         self.map = self.load_map(map_data)
 
@@ -348,12 +341,6 @@ class World:
             index = item.curr_position
             self.locations[index].location_items.append(item)
 
-        # NOTE: You may choose how to store location and item data; create your own World methods to handle these
-        # accordingly. The only requirements:
-        # 1. Make sure the Location class is used to represent each location.
-        # 2. Make sure the Item class is used to represent each item.
-
-    # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def load_map(self, map_data: TextIO) -> list[list[int]]:
         """
         Store map from open file map_data as the map attribute of this object, as a nested list of integers like so:
@@ -434,15 +421,14 @@ class World:
 
         return items
 
-    # NOTE: The method below is REQUIRED. Complete it exactly as specified.
     def get_location(self, x: int, y: int) -> Optional[Location]:
         """Return Location object associated with the coordinates (x, y) in the world map, if a valid location exists at
          that position. Otherwise, return None. (Remember, locations represented by the number -1 on the map should
          return None.)
         """
-
         y_length = len(self.map)
         x_length = len(self.map[0])
+
         if not (0 <= y <= y_length) or not (0 <= x <= x_length):
             return None
 
