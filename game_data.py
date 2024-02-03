@@ -117,7 +117,6 @@ class SpecialItem(Item):
             self.status = True
 
 
-
 class Player:
     """
     A Player in the text advanture game.
@@ -216,7 +215,6 @@ class Player:
         else:
             print("Your bag is empty. *crickets*")
         print()
-
 
     def pick_up(self, location: Location) -> None:
         """Add an item to the items of the location the player is currently at and remove the item
@@ -406,7 +404,7 @@ class World:
         line = items_data.readline().strip()
 
         # load normal items
-        while line != '':
+        while line:
             parts = line.split()
             curr_position, target_position, target_points = int(parts.pop(0)), int(parts.pop(0)), int(parts.pop(0))
             name = ' '.join(parts)
@@ -423,8 +421,9 @@ class World:
 
             # find key
             key = items[0]
+            line = items_data.readline().strip()
             for item in items:
-                if item.name == items_data.readline().strip():
+                if item.name == line:
                     key = item
             hint = items_data.readline()
             special_item = SpecialItem(name, curr_position, target_position, target_points, key, hint)
