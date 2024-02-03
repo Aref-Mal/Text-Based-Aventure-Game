@@ -101,8 +101,7 @@ END
 12
 10
 Wow! It’s… a… DEAD END?!? Head back North and retrace your steps to find more items.
-Wow! It’s… a… DEAD END?!?  You came all the way out here for nothing.
-Head back North and retrace your steps to find more items.
+Wow! It’s… a… DEAD END?!? Head back North and retrace your steps to find more items.
 END
 
 13

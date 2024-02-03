@@ -99,7 +99,7 @@ class SpecialItem(Item):
         - key: the Item needed by the player to unlock this SpecialItem
         - hint: a message given to the player to help them find the key
     """
-    unlocked: bool
+    status: bool
     key: Item
     hint: str
 
@@ -128,6 +128,8 @@ class Player:
         - victory: a variable that remains False until the player wins the game
         - score: the total score of the player in the game
         - moves: the total number of "moves" the player has made so far
+        - movement_mod: movement modifier represents the number of moves the player takes for each
+        movement based action (go North / South / East / West)
 
     Representation Invariants:
         - self.x >= 0 and self.y >= 0
@@ -140,6 +142,7 @@ class Player:
     victory: bool
     score: int
     moves: int
+    movement_mod: float
 
     def __init__(self, x: int, y: int) -> None:
         """
@@ -151,6 +154,7 @@ class Player:
         self.victory = False
         self.score = 0
         self.moves = 0
+        self.movement_mod = 1.0
 
     def available_actions(self, grid: list[list[int]], location: Location) -> list[str]:
         """
@@ -202,7 +206,7 @@ class Player:
         else:
             self.x -= 1
 
-        self.moves += 1
+        self.moves += 1 * self.movement_mod
 
     def open_inventory(self) -> None:
         """Displays the names of the items in the player's inventory

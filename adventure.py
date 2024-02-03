@@ -29,13 +29,15 @@ if __name__ == "__main__":
           open("items.txt") as items_file):
         w = World(map_file, locations_file, items_file)
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
-
     allowed_moves = 20
     grid = w.map
     winning_items = [item for item in w.items if item.target_position == 14]
     exam_room = w.get_location(4, 4)
     menu = ["look", "inventory", "score", "quit"]
     choice = ''
+
+    print("You've got an important exam coming up this evening. Last night you studied in various places."
+          "Unfortunately, when you woke up this morning, you were missing some important exam-related items.")
 
     while not p.victory and p.moves <= allowed_moves:
         location = w.get_location(p.x, p.y)
@@ -44,6 +46,8 @@ if __name__ == "__main__":
         if all(item in exam_room.location_items for item in winning_items):
             p.victory = True
             break
+
+        print(f"Time remaining to test: {int((allowed_moves - p.moves) * 10)} minutes")
 
         # Depending on whether it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -56,6 +60,13 @@ if __name__ == "__main__":
         else:
             print(location.long_description)
             location.visited = True
+
+            if location.position == 12:
+                p.movement_mod = 0.5
+                print("At the end of a long alleyway, you find an abandoned skateboard resting against the wall.\n"
+                      "You figure that four wheels are probably more efficient than two feet, and grab it.\n"
+                      "You feel that you can now move twice as fast.\n")
+
             if location.visit_points != 0:
                 p.score += location.visit_points
                 print(f"You got {location.visit_points} points for visiting this location!")
