@@ -7,6 +7,8 @@ east
 north
 pick up
 t-card
+[menu]
+inventory
 south
 south
 pick up
