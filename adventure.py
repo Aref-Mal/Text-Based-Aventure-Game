@@ -98,8 +98,8 @@ if __name__ == "__main__":
               "ready to complete your final quest - the computer science exam.\n"
               "After a long journey, it is time to focus and apply your knowledge to the true test.\n"
               "Best of luck to you, and may your code be bug-free.")
-        print(f'You had {int((allowed_moves - p.moves) * 5)} minutes remaining. '
-              f'You completed the game with {p.score} points.')
+        print(f'You had {int((allowed_moves - p.moves) * 5)} minutes remaining.'
+              f'You got a score of {p.score} on your exam.')
 
     else:
         # Player loses the game

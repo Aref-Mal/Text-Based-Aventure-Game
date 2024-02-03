@@ -1,0 +1,36 @@
+east
+south
+south
+east
+east
+east
+north
+pick up
+t-card
+south
+south
+pick up
+lucky pen
+north
+west
+west
+west
+north
+north
+west
+pick up
+cheat sheet
+east
+south
+south
+east
+east
+east
+south
+south
+drop
+t-card
+drop
+lucky pen
+drop
+cheat sheet
