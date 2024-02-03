@@ -36,8 +36,14 @@ if __name__ == "__main__":
     menu = ["look", "inventory", "score", "quit"]
     choice = ''
 
-    print("You've got an important exam coming up this evening. Last night you studied in various places."
-          "Unfortunately, when you woke up this morning, you were missing some important exam-related items.")
+    print("--------------------------------------------------------------------------------------------------\n"
+          "You've got an important exam coming up this evening. Last night you studied in various places.\n"
+          "Unfortunately, when you woke up this morning, you were missing some important exam-related items.\n"
+          "You must find your cheat sheet, t-card and lucky pen around the campus and deposit these items at\n"
+          f"the Exam Centre. You have {allowed_moves * 10} minutes left until the exam. It takes you 10 minutes to go\n"
+          "from one location in the campus to the next. Good luck, have fun!\n"
+          "--------------------------------------------------------------------------------------------------\n"
+          "\n")
 
     while not p.victory and p.moves <= allowed_moves:
         location = w.get_location(p.x, p.y)
