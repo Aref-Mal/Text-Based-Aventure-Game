@@ -1,0 +1,56 @@
+east
+south
+south
+south
+south
+[menu]
+score
+north
+north
+east
+north
+[menu]
+score
+south
+east
+east
+north
+pick up
+t-card
+[menu]
+inventory
+south
+south
+pick up
+lucky pen
+[menu]
+inventory
+north
+west
+west
+west
+north
+north
+west
+pick up
+cheat sheet
+[menu]
+inventory
+east
+south
+south
+east
+east
+east
+south
+south
+drop
+t-card
+[menu]
+score
+drop
+lucky pen
+[menu]
+score
+drop
+cheat sheet
