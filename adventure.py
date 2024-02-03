@@ -19,7 +19,7 @@ This file is Copyright (c) 2024 CSC111 Teaching Team
 """
 
 # Note: You may add in other import statements here as needed
-from game_data import World, Item, Location, Player
+from game_data import World, Player
 
 if __name__ == "__main__":
     with (open("map.txt") as map_file, open("locations.txt", encoding='utf-8') as locations_file,

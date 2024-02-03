@@ -227,7 +227,7 @@ class Player:
         at. Update the player's score if they picked up the item from its target location.
         This is a mutating method and returns None.
         """
-        item_names = [item.name.lower() for item in location.location_items]
+        item_names = [thing.name.lower() for thing in location.location_items]
 
         print(f"You found: {item_names}")
 
@@ -276,7 +276,7 @@ class Player:
         in which the player is currently at. Update the player's score if they dropped the item into its
         target location. This is a mutating method and returns None.
         """
-        item_names = [item.name.lower() for item in self.inventory]
+        item_names = [thing.name.lower() for thing in self.inventory]
 
         print(f"You have: {item_names}")
 
@@ -429,7 +429,7 @@ class World:
         y_length = len(self.map)
         x_length = len(self.map[0])
 
-        if not (0 <= y <= y_length) or not (0 <= x <= x_length):
+        if not 0 <= y <= y_length or not 0 <= x <= x_length:
             return None
 
         position = self.map[y][x]
@@ -452,7 +452,7 @@ class World:
             print("Invalid option. Please try again.\n")
             return
 
-        elif choice == 'north' or choice == 'east' or choice == 'south' or choice == 'west':
+        elif choice in {'north', 'south', 'east', 'west'}:
             p.go(choice)
 
         elif choice == 'pick up':
