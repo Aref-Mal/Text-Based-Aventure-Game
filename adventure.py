@@ -29,7 +29,7 @@ if __name__ == "__main__":
           open("items.txt") as items_file):
         w = World(map_file, locations_file, items_file)
     p = Player(0, 0)  # set starting location of player; you may change the x, y coordinates here as appropriate
-    allowed_moves = 20
+    allowed_moves = 25
     grid = w.map
     winning_items = [item for item in w.items if item.target_position == 14]
     exam_room = w.get_location(4, 4)
@@ -40,7 +40,7 @@ if __name__ == "__main__":
           "You've got an important exam coming up this evening. Last night you studied in various places.\n"
           "Unfortunately, when you woke up this morning, you were missing some important exam-related items.\n"
           "You must find your cheat sheet, t-card and lucky pen around the campus and deposit these items at\n"
-          f"the Exam Centre. You have {allowed_moves * 10} minutes left until the exam. It takes you 10 minutes to go\n"
+          f"the Exam Centre. You have {allowed_moves * 5} minutes left until the exam. It takes you 5 minutes to go\n"
           "from one location in the campus to the next. Good luck, have fun!\n"
           "--------------------------------------------------------------------------------------------------\n"
           "\n")
@@ -53,7 +53,7 @@ if __name__ == "__main__":
             p.victory = True
             break
 
-        print(f"Time remaining to test: {int((allowed_moves - p.moves) * 10)} minutes")
+        print(f"Time remaining to test: {int((allowed_moves - p.moves) * 5)} minutes")
 
         # Depending on whether it's been visited before,
         # print either full description (first time visit) or brief description (every subsequent visit)
@@ -101,7 +101,8 @@ if __name__ == "__main__":
               "ready to complete your final quest - the computer science exam.\n"
               "After a long journey, it is time to focus and apply your knowledge to the true test.\n"
               "Best of luck to you, and may your code be bug-free.")
-        print(f'You had {allowed_moves - p.moves} remaining. You completed the game with {p.score} points.')
+        print(f'You had {int((allowed_moves - p.moves) * 5)} minutes remaining. '
+              f'You completed the game with {p.score} points.')
 
     else:
         # Player loses the game

@@ -63,7 +63,6 @@ class Location:
         print(self.long_description)
 
 
-
 class Item:
     """An item in our text adventure game world.
 
